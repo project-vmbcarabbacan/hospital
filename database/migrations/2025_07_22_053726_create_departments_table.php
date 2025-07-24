@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
+            $table->unsignedBigInteger('head_doctor_id')->nullable()->index();
+            $table->string('icon')->nullable();
+            $table->text('working_hours')->nullable();
             $table->timestamps();
         });
     }

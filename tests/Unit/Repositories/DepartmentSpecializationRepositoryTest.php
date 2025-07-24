@@ -26,7 +26,10 @@ it('successfully adds a new department', function () {
 
     $data = new DepartmentEntity(
         name: 'IT',
-        description: 'Handles technology'
+        description: 'Handles technology',
+        head_doctor_id: new IdObj(1),
+        icon: 'default.png',
+        working_hours: '8 AM to 5 PM'
     );
 
     $department = $this->repository->addDepartment($data);

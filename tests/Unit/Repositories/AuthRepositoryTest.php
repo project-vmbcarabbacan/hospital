@@ -46,10 +46,12 @@ test('login fails with invalid credentials', function () {
     $this->authRepository->login($email, $password);
 });
 
-test('create user success', function() {
+test('create user success', function () {
     $role_id = RoleEnum::SUPER_ADMIN;
     $data = [
-        "name" => "Vincent mark carabbacan",
+        "first_name" => "vincent mark",
+        "last_name" => "carabbacan",
+        "title" => "Dr",
         "email" => "vmbcarabbacan@gmail.com",
         "password" => "Password123",
         "role_id" => $role_id->value,
@@ -59,6 +61,9 @@ test('create user success', function() {
         "address" => "Dubai, Dubai",
         "birthdate" => "1992-03-15",
         "gender" => "male",
+        "bio" => "Senior Web Developer",
+        "experience_years" => 8,
+        "is_visible" => true,
         "profile_photo" => "",
     ];
 
@@ -69,11 +74,11 @@ test('create user success', function() {
         ->and($dto->password)->toBeInstanceOf(PasswordObj::class)
         ->and($dto->email->value())->toBe('vmbcarabbacan@gmail.com');
 
-    $result = $this->authRepository->createUser($dto );
+    $result = $this->authRepository->createUser($dto);
     expect($result)->toBeInstanceOf(User::class);
 });
 
-test('update user password', function() {
+test('update user password', function () {
     $role_id = RoleEnum::SUPER_ADMIN;
     $user = User::factory()->create([
         'email' => 'test@example.com',
@@ -87,7 +92,7 @@ test('update user password', function() {
     expect($result)->toBeInstanceOf(User::class);
 });
 
-test('send password token to the email address', function() {
+test('send password token to the email address', function () {
     $role_id = RoleEnum::SUPER_ADMIN;
     $user = User::factory()->create([
         'email' => 'test@example.com',

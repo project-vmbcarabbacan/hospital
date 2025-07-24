@@ -49,7 +49,8 @@ it('adds a new department', function () {
 
     $serviceData = new CreateDepartmentDto(
         name: 'Finance',
-        description: 'Money stuff'
+        description: 'Money stuff',
+        head_doctor_id: new IdObj(1)
     );
 
     $result = $this->service->addDepartment($serviceData);

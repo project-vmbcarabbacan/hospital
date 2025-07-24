@@ -2,11 +2,17 @@
 
 namespace App\Domain\Entities;
 
-class DepartmentEntity {
+use App\Domain\ValueObjects\IdObj;
+
+class DepartmentEntity
+{
 
     public function __construct(
         public readonly string $name,
-        public readonly ?int $id = null,
+        public readonly ?IdObj $id = null,
+        public readonly ?IdObj $head_doctor_id = null,
         public readonly ?string $description = null,
-    ){}
+        public readonly ?string $icon = null,
+        public readonly ?string $working_hours = null,
+    ) {}
 }

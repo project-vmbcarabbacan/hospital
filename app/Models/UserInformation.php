@@ -16,10 +16,16 @@ class UserInformation extends Model
 
     protected $fillable = [
         'user_id',
+        'first_name',
+        'last_name',
+        'title',
         'phone',
         'address',
         'birthdate',
         'gender',
+        'bio',
+        'experience_years',
+        'is_visible',
         'profile_photo',
     ];
 

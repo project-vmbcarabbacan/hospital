@@ -32,7 +32,7 @@ class AuthRepository implements AuthRepositoryInterface
     {
         try {
             $userEntity = new UserEntity(
-                name: $dto->name,
+                name: $dto->first_name . ' ' . $dto->last_name,
                 email: $dto->email,
                 role_id: $dto->role_id,
                 status: $dto->status,
@@ -43,10 +43,16 @@ class AuthRepository implements AuthRepositoryInterface
             $user = $this->createBaseUser($userEntity);
 
             $information = new UserInformationEntity(
+                first_name: $dto->first_name,
+                last_name: $dto->last_name,
                 phone: $dto->phone,
+                title: $dto->title,
                 address: $dto->address,
                 birthdate: $dto->birthdate,
                 gender: $dto->gender,
+                bio: $dto->bio,
+                experience_years: $dto->experience_years,
+                is_visible: $dto->is_visible,
                 profile_photo: $dto->profile_photo,
             );
             $this->createUserInformation($user, $information);
@@ -57,9 +63,10 @@ class AuthRepository implements AuthRepositoryInterface
         }
     }
 
-    public function updatePassword(IdObj $id, PasswordObj $password): User {
+    public function updatePassword(IdObj $id, PasswordObj $password): User
+    {
         $user = app(UserRepository::class)->findById($id);
-        if(!$user)
+        if (!$user)
             throw new Exception(ExceptionConstants::USER_NOT_FOUND);
 
         $user->password = $password->value();
@@ -68,9 +75,10 @@ class AuthRepository implements AuthRepositoryInterface
         return $user;
     }
 
-    public function sendForgotPasswordCode(EmailObj $email) {
+    public function sendForgotPasswordCode(EmailObj $email)
+    {
         $user = app(UserRepository::class)->findByEmail($email);
-        if(!$user)
+        if (!$user)
             throw new Exception(ExceptionConstants::USER_NOT_FOUND);
 
         $token = Str::upper(Str::random(6));
@@ -108,10 +116,16 @@ class AuthRepository implements AuthRepositoryInterface
     {
         try {
             $user->information()->create([
+                'first_name'         => $data->first_name ?? null,
+                'last_name'         => $data->last_name ?? null,
+                'title'         => $data->title ?? null,
                 'phone'         => $data->phone ?? null,
                 'address'       => $data->address ?? null,
                 'birthdate'     => $data->birthdate ?? null,
                 'gender'        => $data->gender ?? null,
+                'bio'        => $data->bio ?? null,
+                'experience_years'        => $data->experience_years ?? null,
+                'is_visible'        => $data->is_visible ?? true,
                 'profile_photo' => $data->profile_photo ?? null,
             ]);
         } catch (Exception $e) {
