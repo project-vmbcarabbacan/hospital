@@ -31,7 +31,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
                 'description' => $data->description,
                 'head_doctor_id' => $data->head_doctor_id,
                 'description' => $data->description,
-                'icon' => $data->icon,
+                'photo' => $data->photo,
                 'working_hours' => $data->working_hours,
             ], fn($value) => !is_null($value));
 
@@ -55,7 +55,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
                 'description' => $data->description,
                 'head_doctor_id' => $data->head_doctor_id,
                 'description' => $data->description,
-                'icon' => $data->icon,
+                'photo' => $data->photo,
                 'working_hours' => $data->working_hours,
             ], fn($value) => !is_null($value));
 

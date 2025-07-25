@@ -19,6 +19,9 @@ class DepartmentFactory extends Factory
         return [
             'name' => $this->faker->unique()->jobTitle,
             'description' => $this->faker->sentence,
+            'head_doctor_id' => \App\Models\User::factory(),
+            'working_hours' => '8 AM to 5 PM',
+            'photo' => 'https://i.pravatar.cc/300?img=' . $this->faker->numberBetween(1, 70)
         ];
     }
 }

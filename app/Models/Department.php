@@ -12,7 +12,7 @@ class Department extends Model
         'name',
         'description',
         'head_doctor_id',
-        'icon',
+        'photo',
         'working_hours',
     ];
 }

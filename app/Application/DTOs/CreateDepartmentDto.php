@@ -10,7 +10,7 @@ class CreateDepartmentDto
         public readonly string $name,
         public readonly ?IdObj $head_doctor_id = null,
         public readonly ?string $description = null,
-        public readonly ?string $icon = null,
+        public readonly ?string $photo = null,
         public readonly ?string $working_hours = null,
     ) {}
 
@@ -20,7 +20,7 @@ class CreateDepartmentDto
             name: $data['name'],
             head_doctor_id: new IdObj($data['head_doctor_id']) ?? null,
             description: $data['description'] ?? null,
-            icon: $data['icon'] ?? null,
+            photo: $data['photo'] ?? null,
             working_hours: $data['working_hours'] ?? null,
         );
     }
@@ -31,7 +31,7 @@ class CreateDepartmentDto
             'name' => $this->name,
             'head_doctor_id' => $this->head_doctor_id,
             'description' => $this->description,
-            'icon' => $this->icon,
+            'photo' => $this->photo,
             'working_hours' => $this->working_hours,
         ], fn($value) => $value != null);
     }

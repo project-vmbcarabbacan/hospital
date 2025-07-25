@@ -28,7 +28,7 @@ it('successfully adds a new department', function () {
         name: 'IT',
         description: 'Handles technology',
         head_doctor_id: new IdObj(1),
-        icon: 'default.png',
+        photo: 'default.png',
         working_hours: '8 AM to 5 PM'
     );
 

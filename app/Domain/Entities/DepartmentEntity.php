@@ -12,7 +12,7 @@ class DepartmentEntity
         public readonly ?IdObj $id = null,
         public readonly ?IdObj $head_doctor_id = null,
         public readonly ?string $description = null,
-        public readonly ?string $icon = null,
+        public readonly ?string $photo = null,
         public readonly ?string $working_hours = null,
     ) {}
 }
