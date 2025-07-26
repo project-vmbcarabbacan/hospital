@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('description')->nullable();
             $table->unsignedBigInteger('head_doctor_id')->nullable()->index();
             $table->string('photo')->nullable();
             $table->text('working_hours')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

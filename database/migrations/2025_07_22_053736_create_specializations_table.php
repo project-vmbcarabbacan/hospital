@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('specializations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('description')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['department_id', 'name']);
         });
     }
 

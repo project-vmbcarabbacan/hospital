@@ -25,7 +25,7 @@ class SuperAdminSeeder extends Seeder
             ]
         ];
 
-        foreach($users as $name => $data) {
+        foreach ($users as $name => $data) {
             $specialization = Specialization::where('name', $name)->first();
 
             $data['specialization_id'] = $specialization->id;
@@ -34,25 +34,37 @@ class SuperAdminSeeder extends Seeder
 
         $informations = [
             'Super Admin' => [
+                'first_name' => 'vincent mark',
+                'last_name' => 'carabbacan',
+                'title' => 'Mr',
                 'phone' => '12345678',
                 'address' => 'Philippines',
                 'birthdate' => '1992-03-15',
                 'gender' => 'male',
+                'bio' => 'Senior Web Developer',
+                'experience_years' => 8,
+                'is_visible' => true,
                 'profile_photo' => 'default.png'
 
             ]
         ];
 
-        foreach($informations as $name => $data) {
+        foreach ($informations as $name => $data) {
             $user = User::where('name', $name)->first();
 
-            if($user) {
+            if ($user) {
                 UserInformation::create([
                     'user_id' => $user->id,
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                    'title' => $data['title'],
                     'phone' => $data['phone'],
                     'address' => $data['address'],
                     'birthdate' => $data['birthdate'],
                     'gender' => $data['gender'],
+                    'bio' => $data['bio'],
+                    'experience_years' => $data['experience_years'],
+                    'is_visible' => $data['is_visible'],
                     'profile_photo' => $data['profile_photo'],
                 ]);
             }

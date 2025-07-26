@@ -9,6 +9,9 @@ use App\Models\Distributor;
 use App\Models\Product;
 use App\Infrastructure\Repositories\DistProductServiceRepository;
 use App\Application\Utils\ExceptionConstants;
+use App\Domain\ValueObjects\PriceObj;
+use App\Domain\ValueObjects\SkuObj;
+use App\Domain\ValueObjects\StockObj;
 use App\Models\Service;
 
 beforeEach(function () {
@@ -88,12 +91,12 @@ it('throws exception when distributor already exists', function () {
 it('successfully update the distributor', function () {
 
     $data = new DistributorEntity(
-        'Legacy',
-        '566368879',
-        'v.c@gmail.com',
-        '566368879',
-        'Deubai, Dubai',
-        'default.png',
+        name: 'Legacy',
+        contact: '566368879',
+        email: 'v.c@gmail.com',
+        phone: '566368879',
+        address: 'Deubai, Dubai',
+        photo: 'default.png',
     );
 
     $department = $this->repository->addDistributor($data);
@@ -116,12 +119,8 @@ it('throws exception when updating non-existent distributor', function () {
     $this->expectExceptionMessage(ExceptionConstants::DISTRIBUTOR_NOT_FOUND);
 
     $data = new DistributorEntity(
-        'Ghost',
-        '1234123',
-        null,
-        null,
-        null,
-        null,
+        name: 'Ghost',
+        contact: '1234123',
     );
 
     $this->repository->updateDistributor(new IdObj(9999), $data);
@@ -281,10 +280,10 @@ it('successfully adds new product', function () {
     $data = new ProductEntity(
         new IdObj($distributor->id),
         new IdObj($brand->id),
-        'abc123',
+        new SkuObj('ABC-123'),
         'Citirizine',
-        125.25,
-        100,
+        new PriceObj(125.25),
+        new StockObj(100),
         true,
         null
     );
@@ -302,10 +301,10 @@ it('throw exception when adding a non-existent distributor', function () {
     $data = new ProductEntity(
         new IdObj(150),
         new IdObj($brand->id),
-        'abc123',
+        new SkuObj('ABC-123'),
         'Citirizine',
-        125.25,
-        100,
+        new PriceObj(125.25),
+        new StockObj(100),
         true,
         null
     );

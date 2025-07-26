@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('sku', 50);
-            $table->string('name');
+            $table->string('sku', 50)->index();
+            $table->string('name')->index();
             $table->decimal('price', 10, 2);
             $table->string('photo')->nullable();
-            $table->boolean('status')->default(true);
+            $table->boolean('status')->default(true)->index();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

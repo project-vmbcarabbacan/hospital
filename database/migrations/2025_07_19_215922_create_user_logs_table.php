@@ -17,6 +17,7 @@ return new class extends Migration
             $table->enum('type', ['CREATED', 'UPDATED', 'LOGIN', 'LOGOUT', 'REFRESH', 'SESSION'])->nullable()->index();
             $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id', 'user_logs_user_id_foreign')
                 ->references('id')

@@ -17,6 +17,7 @@ class ExceptionConstants
     const SPECIALIZATION_EXIST = 'Specialization already exist';
     const SPECIALIZATION_ADD = 'Unable to add specialization';
     const SPECIALIZATION_UPDATE = 'Unable to update specialization';
+    const SPECIALIZATION_NOT_FOUND = 'Specialization not found';
 
     const DISTRIBUTOR_NOT_FOUND = 'Distributor not found!';
     const DISTRIBUTOR_EXIST = 'Distributor already exists!';
@@ -37,4 +38,16 @@ class ExceptionConstants
     const SERVICE_EXIST = 'Service already exists!';
     const SERVICE_ADD = 'Unable to add service';
     const SERVICE_UPDATE = 'Unable to update service';
+
+    const ACHIEVEMENT_NOT_FOUND = 'Achievement not found!';
+    const ACHIEVEMENT_ADD = 'Unable to add achievement';
+    const ACHIEVEMENT_UPDATE = 'Unable to update achievement';
+
+    const DOCTOR_SCHEDULE_NOT_FOUND = 'Doctor schedule not found!';
+    const DOCTOR_SCHEDULE_EXIST = 'Doctor schedule already exist!';
+    const DOCTOR_SCHEDULE_ADD = 'Unable to add schedule';
+    const DOCTOR_SCHEDULE_UPDATE = 'Unable to update schedu;e';
+
+    const DOCTOR_SCHEDULE_EXCEPTION_EXIST = 'Doctor schedule exception already exist';
+    const DOCTOR_SCHEDULE_EXCEPTION_NOT_FOUND = 'Doctor schedule exception not found!';
 }

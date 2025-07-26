@@ -12,6 +12,8 @@ use App\Domain\Interfaces\Repositories\DepartmentSpecializationRepositoryInterfa
 use App\Infrastructure\Repositories\DepartmentSpecializationRepository;
 use App\Domain\Interfaces\Repositories\DistProductServiceRepositoryInterface;
 use App\Infrastructure\Repositories\DistProductServiceRepository;
+use App\Domain\Interfaces\Repositories\UserSpecializationAchievementRepositoryInterface;
+use App\Infrastructure\Repositories\UserSpecializationAchievementRepository;
 
 use App\Domain\Interfaces\Services\AuthServiceInterface;
 use App\Application\Services\AuthService;
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(DepartmentSpecializationRepositoryInterface::class, DepartmentSpecializationRepository::class);
         $this->app->bind(DistProductServiceRepositoryInterface::class, DistProductServiceRepository::class);
+        $this->app->bind(UserSpecializationAchievementRepositoryInterface::class, UserSpecializationAchievementRepository::class);
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
 
@@ -46,7 +49,6 @@ class AppServiceProvider extends ServiceProvider
         foreach (glob(app_path('Support/Helpers') . '/*.php') as $file) {
             require_once $file;
         }
-
     }
 
     /**

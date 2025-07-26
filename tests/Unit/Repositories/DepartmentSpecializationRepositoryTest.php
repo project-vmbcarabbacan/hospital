@@ -52,7 +52,7 @@ it('throws exception when department already exists', function () {
     );
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_ADD);
+    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_EXIST);
 
     $this->repository->addDepartment($data);
 });
@@ -81,7 +81,7 @@ it('successfully update the department', function () {
 it('throws exception when updating non-existent department', function () {
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_UPDATE);
+    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_NOT_FOUND);
 
     $department_id = new IdObj(9999);
     $this->repository->updateDepartment($department_id, new DepartmentEntity(
@@ -134,7 +134,7 @@ it('successfully adds a specialization', function () {
 it('throws exception when department does not exist', function () {
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_ADD);
+    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_NOT_FOUND);
 
     $data = new SpecializationEntity(
         name: 'Neurology',
@@ -153,7 +153,7 @@ it('throws exception when specialization already exists', function () {
     ]);
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_ADD);
+    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_EXIST);
 
     $data = new SpecializationEntity(
         name: 'Pediatrics',
@@ -191,7 +191,7 @@ it('throws exception if specialization is not found', function () {
     $department = Department::factory()->create();
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_UPDATE);
+    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_NOT_FOUND);
 
     $data = new SpecializationEntity(
         department_id: new IdObj($department->id),
@@ -205,7 +205,7 @@ it('throws exception if department is not found', function () {
     $specialization = Specialization::factory()->create();
 
     $this->expectException(Exception::class);
-    $this->expectExceptionMessage(ExceptionConstants::SPECIALIZATION_UPDATE);
+    $this->expectExceptionMessage(ExceptionConstants::DEPARTMENT_NOT_FOUND);
 
     $data = new SpecializationEntity(
         department_id: new IdObj(9999),

@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\BaseModel;
+use App\Observers\UserInformationObserver;
 
-class UserInformation extends Model
+class UserInformation extends BaseModel
 {
     use HasFactory;
-
     protected static function booted()
     {
-        static::observe(UserInformation::class);
+        static::observe(UserInformationObserver::class);
     }
 
     protected $fillable = [

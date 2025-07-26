@@ -17,7 +17,7 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'sku' => $this->faker->unique()->regexify('[A-Za-z0-9]{12}'),
+            'sku' => $this->faker->unique()->regexify('[A-Z0-9\-]{12}'),
             'name' => $this->faker->word(),
             'price' => $this->faker->randomFloat(2, 10, 1000),
             'photo' => 'https://i.pravatar.cc/300?img=' . $this->faker->numberBetween(1, 70),

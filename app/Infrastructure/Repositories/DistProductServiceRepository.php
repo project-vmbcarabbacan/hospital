@@ -43,6 +43,10 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
     public function updateDistributor(IdObj $id, DistributorEntity $data)
     {
         try {
+            $exist = $this->getDistributorByName($data->name, $id);
+            if ($exist)
+                throw new Exception(ExceptionConstants::DISTRIBUTOR_EXIST);
+
             $distributor = $this->getDistributorById($id);
 
             if (!$distributor)
@@ -85,6 +89,10 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
     public function updateBrand(IdObj $id, BrandEntity $data)
     {
         try {
+            $exist = $this->getBrandByName($data->name, $id);
+            if ($exist)
+                throw new Exception(ExceptionConstants::BRAND_EXIST);
+
             $brand = $this->getBrandById($id);
 
             if (!$brand)
@@ -137,12 +145,12 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
                 throw new Exception(ExceptionConstants::BRAND_NOT_FOUND);
 
             return Product::create([
-                'distributor_id' => $data->distributor_id,
-                'brand_id' => $data->brand_id,
-                'sku' => $data->sku,
+                'distributor_id' => $data->distributor_id->value(),
+                'brand_id' => $data->brand_id->value(),
+                'sku' => $data->sku->value(),
                 'name' => $data->name,
-                'price' => $data->price,
-                'stocks' => $data->stocks,
+                'price' => $data->price->value(),
+                'stocks' => $data->stocks->value(),
                 'photo' => $data->photo,
                 'status' => $data->status,
             ])->refresh();
@@ -170,12 +178,12 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
                 throw new Exception(ExceptionConstants::BRAND_NOT_FOUND);
 
             $updates = array_filter([
-                'distributor_id' => $data->distributor_id,
-                'brand_id'       => $data->brand_id,
-                'sku'            => $data->sku,
+                'distributor_id' => $data->distributor_id->value(),
+                'brand_id'       => $data->brand_id->value(),
+                'sku'            => $data->sku->value(),
                 'name'           => $data->name,
-                'price'          => $data->price,
-                'stocks'         => $data->stocks,
+                'price'          => $data->price->value(),
+                'stocks'         => $data->stocks->value(),
                 'photo'          => $data->photo,
                 'status'         => $data->status,
             ], fn($value) => !is_null($value));
@@ -211,6 +219,10 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
     public function updateService(IdObj $id, ServiceEntity $data)
     {
         try {
+            $exist = $this->getServiceByName($data->name, $id);
+            if ($exist)
+                throw new Exception(ExceptionConstants::SERVICE_EXIST);
+
             $service = $this->getServiceById($id);
 
             if (!$service)
@@ -257,18 +269,33 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
         return Service::find($id->value());
     }
 
-    protected function getDistributorByName(string $name)
+    protected function getDistributorByName(string $name, IdObj $id = null)
     {
-        return Distributor::where('name', $name)->first();
+        $distributor = Distributor::where('name', $name);
+
+        if (!is_null($id))
+            $distributor = $distributor->where('id', '<>', $id->value());
+
+        return $distributor->first();
     }
 
-    protected function getBrandByName(string $name)
+    protected function getBrandByName(string $name, IdObj $id = null)
     {
-        return Brand::where('name', $name)->first();
+        $brand = Brand::where('name', $name);
+
+        if (!is_null($id))
+            $brand = $brand->where('id', '<>', $id->value());
+
+        return $brand->first();
     }
 
-    protected function getServiceByName(string $name)
+    protected function getServiceByName(string $name, IdObj $id = null)
     {
-        return Service::where('name', $name)->first();
+        $service = Service::where('name', $name);
+
+        if (!is_null($id))
+            $service = $service->where('id', '<>', $id->value());
+
+        return $service->first();
     }
 }

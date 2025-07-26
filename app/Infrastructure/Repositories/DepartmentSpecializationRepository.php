@@ -37,7 +37,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
 
             return Department::create($create);
         } catch (Exception $e) {
-            throw new Exception(ExceptionConstants::DEPARTMENT_ADD);
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
 
             return $department;
         } catch (Exception $e) {
-            throw new Exception(ExceptionConstants::DEPARTMENT_UPDATE);
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
                 'photo' => $data->photo
             ]);
         } catch (Exception $e) {
-            throw new Exception(ExceptionConstants::SPECIALIZATION_ADD);
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -105,7 +105,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
         try {
             $specialization = $this->getSpecializationById($id);
             if (!$specialization)
-                throw new Exception('Specialization not found');
+                throw new Exception(ExceptionConstants::SPECIALIZATION_NOT_FOUND);
 
             $department = $this->getDepartmentById($data->department_id);
             if (!$department)
@@ -122,7 +122,7 @@ class DepartmentSpecializationRepository implements DepartmentSpecializationRepo
 
             return $specialization;
         } catch (Exception $e) {
-            throw new Exception(ExceptionConstants::SPECIALIZATION_UPDATE);
+            throw new Exception($e->getMessage());
         }
     }
 

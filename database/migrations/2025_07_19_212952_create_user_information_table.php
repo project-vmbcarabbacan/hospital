@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('user_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->index();
-            $table->string('first_name', 100);
-            $table->string('last_name', 100);
+            $table->string('first_name', 100)->index();
+            $table->string('last_name', 100)->index();
             $table->string('title', 50)->nullable();
             $table->string('phone')->nullable()->unique()->index();
             $table->string('address')->nullable();
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_visible')->default(true);
             $table->string('profile_photo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
