@@ -159,7 +159,7 @@ class DoctorScheduleRepository implements DoctorScheduleRepositoryInterface
             })->exists();
     }
 
-    protected function getDoctorExceptionDate(IdObj $doctor_id, DateObj $date, IdObj $id = null)
+    protected function getDoctorExceptionDate(IdObj $doctor_id, DateObj $date, ?IdObj $id = null)
     {
         $exception =  ScheduleException::where('user_id', $doctor_id)
             ->where('date', $date);

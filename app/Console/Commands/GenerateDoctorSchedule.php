@@ -24,7 +24,7 @@ class GenerateDoctorSchedule extends Command
      *
      * @var string
      */
-    protected $description = 'Generate dated doctor schedule instances based on recurring schedule';
+    protected $description = 'Generate dated doctor schedule instances based on recurring schedule for 2 months.';
 
     /**
      * Execute the console command.
@@ -32,9 +32,10 @@ class GenerateDoctorSchedule extends Command
     public function handle()
     {
         DB::transaction(function () {
-            $daysAhead = 30;
-            $startDate = Carbon::today();
-            $endDate = $startDate->copy()->addDays($daysAhead);
+            $now = Carbon::now();
+            $startDate = Carbon::today()->startOfMonth();
+            $nextMonth = $now->addMonth();
+            $endDate = $nextMonth->endOfMonth();
 
             $this->info("Generating doctor schedules from $startDate to $endDate");
 

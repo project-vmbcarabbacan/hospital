@@ -46,8 +46,12 @@ class ExceptionConstants
     const DOCTOR_SCHEDULE_NOT_FOUND = 'Doctor schedule not found!';
     const DOCTOR_SCHEDULE_EXIST = 'Doctor schedule already exist!';
     const DOCTOR_SCHEDULE_ADD = 'Unable to add schedule';
-    const DOCTOR_SCHEDULE_UPDATE = 'Unable to update schedu;e';
+    const DOCTOR_SCHEDULE_UPDATE = 'Unable to update schedule';
 
     const DOCTOR_SCHEDULE_EXCEPTION_EXIST = 'Doctor schedule exception already exist';
     const DOCTOR_SCHEDULE_EXCEPTION_NOT_FOUND = 'Doctor schedule exception not found!';
+
+    const APPOINTMENT_NOT_FOUND = 'Appointment not found';
+    const APPOINTMENT_BOOK = 'You have already booked with the same date.';
+    const APPOINTMENT_BOOKED = 'Appointment date and time no longer available';
 }

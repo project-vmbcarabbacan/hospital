@@ -17,10 +17,10 @@ class RunFactorySeeder extends Seeder
         \App\Models\Achievement::factory(50)->create();
         \App\Models\DoctorSpecialization::factory(70)->create();
         \App\Models\Distributor::factory(25)->create();
-        \App\Models\Brand::factory(100)->create();
+        \App\Models\Brand::factory(50)->create();
         \App\Models\Product::factory(180)->create();
         \App\Models\Service::factory(60)->create();
-        \App\Models\Doctor\Schedule::factory(500)->create();
+        \App\Models\Doctor\Schedule::factory(250)->create();
         \App\Models\Doctor\ScheduleException::factory(50)->create();
     }
 }

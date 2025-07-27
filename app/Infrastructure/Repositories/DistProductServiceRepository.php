@@ -269,7 +269,7 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
         return Service::find($id->value());
     }
 
-    protected function getDistributorByName(string $name, IdObj $id = null)
+    protected function getDistributorByName(string $name, ?IdObj $id = null)
     {
         $distributor = Distributor::where('name', $name);
 
@@ -279,7 +279,7 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
         return $distributor->first();
     }
 
-    protected function getBrandByName(string $name, IdObj $id = null)
+    protected function getBrandByName(string $name, ?IdObj $id = null)
     {
         $brand = Brand::where('name', $name);
 
@@ -289,7 +289,7 @@ class DistProductServiceRepository implements DistProductServiceRepositoryInterf
         return $brand->first();
     }
 
-    protected function getServiceByName(string $name, IdObj $id = null)
+    protected function getServiceByName(string $name, ?IdObj $id = null)
     {
         $service = Service::where('name', $name);
 
