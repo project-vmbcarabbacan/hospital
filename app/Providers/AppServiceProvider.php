@@ -16,6 +16,10 @@ use App\Domain\Interfaces\Repositories\UserSpecializationAchievementRepositoryIn
 use App\Infrastructure\Repositories\UserSpecializationAchievementRepository;
 use App\Domain\Interfaces\Repositories\AppointmentRepositoryInterface;
 use App\Infrastructure\Repositories\AppointmentRepository;
+use App\Domain\Interfaces\Repositories\PrescriptionRepositoryInterface;
+use App\Infrastructure\Repositories\PrescriptionRepository;
+use App\Domain\Interfaces\Repositories\RatingRepositoryInterface;
+use App\Infrastructure\Repositories\RatingRepository;
 
 use App\Domain\Interfaces\Services\AuthServiceInterface;
 use App\Application\Services\AuthService;
@@ -38,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DistProductServiceRepositoryInterface::class, DistProductServiceRepository::class);
         $this->app->bind(UserSpecializationAchievementRepositoryInterface::class, UserSpecializationAchievementRepository::class);
         $this->app->bind(AppointmentRepositoryInterface::class, AppointmentRepository::class);
+        $this->app->bind(PrescriptionRepositoryInterface::class, PrescriptionRepository::class);
+        $this->app->bind(RatingRepositoryInterface::class, RatingRepository::class);
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
 

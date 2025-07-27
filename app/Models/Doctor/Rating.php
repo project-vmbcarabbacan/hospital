@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Doctor;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Appointment extends BaseModel
+class Rating extends Model
 {
-    /** @use HasFactory<\Database\Factories\AppointmentFactory> */
+    /** @use HasFactory<\Database\Factories\Doctor\RatingFactory> */
     use HasFactory;
     protected $fillable = [
         'doctor_id',
         'patient_id',
-        'date',
-        'appointment_time',
-        'status',
-        'notes',
+        'rating',
+        'comment',
+        'is_approved',
     ];
 }

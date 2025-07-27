@@ -81,15 +81,15 @@ class AppointmentRepository implements AppointmentRepositoryInterface
 
     protected function checkIfPatientMadeAppointmentOfSameDay(IdObj $patient_id, DateObj $date)
     {
-        return Appointment::where('patient_id', $patient_id)
-            ->whereDate('date', $date)
+        return Appointment::where('patient_id', $patient_id->value())
+            ->whereDate('date', $date->value())
             ->exists();
     }
 
     protected function checkIfAppointmentAlreadyBooked(DateObj $date, TimeOfDayObj $appointment_time)
     {
-        return Appointment::whereDate('date', $date)
-            ->whereTime('appointment_time', $appointment_time)
+        return Appointment::whereDate('date', $date->value())
+            ->whereTime('appointment_time', $appointment_time->value())
             ->first();
     }
 }

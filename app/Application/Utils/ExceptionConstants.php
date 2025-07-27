@@ -54,4 +54,11 @@ class ExceptionConstants
     const APPOINTMENT_NOT_FOUND = 'Appointment not found';
     const APPOINTMENT_BOOK = 'You have already booked with the same date.';
     const APPOINTMENT_BOOKED = 'Appointment date and time no longer available';
+
+    const PRESCRIPTION_FOUND = 'Prescription already exist';
+    const PRESCRIPTION_NOT_FOUND = 'Prescription not found';
+
+    const PRESCRIPTION_ITEM_FOUND = 'Prescription item already exist';
+
+    const RATING_NOT_FOUND = 'Rating not found';
 }
