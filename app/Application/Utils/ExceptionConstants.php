@@ -4,6 +4,7 @@ namespace App\Application\Utils;
 
 class ExceptionConstants
 {
+    const VALIDATION = 'Validation failed';
 
     const LOGIN_INVALID = 'Invalid credentials';
     const USER_NOT_FOUND = 'User not found!';

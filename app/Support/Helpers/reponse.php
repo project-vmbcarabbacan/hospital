@@ -6,7 +6,7 @@ if (!function_exists('successLogin')) {
     function successLogin($message, $data = [], $token = '')
     {
         return response()->json(['message' => $message, 'data' => $data], 200)->cookie(
-            'auth_token',
+            'laravel_session',
             $token,
             60 * 24, // 1 day
             '/',

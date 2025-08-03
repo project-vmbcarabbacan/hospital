@@ -20,6 +20,9 @@ class AuthService implements AuthServiceInterface
     {
         try {
             $user = $this->authRepositoryInterface->login($dto->email, $dto->password);
+            $user->photo = $user->information && $user->information->profile_photo ? $user->information->profile_photo : '';
+
+            unset($user->information);
 
             $role = $this->getRoleAndPermissions(new RoleIdObj($user->role_id));
 
@@ -30,7 +33,8 @@ class AuthService implements AuthServiceInterface
         }
     }
 
-    public function createUser(CreateUserDto $data) {
+    public function createUser(CreateUserDto $data)
+    {
         try {
             $user = $this->authRepositoryInterface->createUser($data);
 
@@ -44,7 +48,8 @@ class AuthService implements AuthServiceInterface
         }
     }
 
-    private function getRoleAndPermissions(RoleIdObj $roleId) {
+    private function getRoleAndPermissions(RoleIdObj $roleId)
+    {
         $role = $this->role->getRoleName($roleId);
         $permissions = $this->role->getPermissionsByRoleId($roleId);
 

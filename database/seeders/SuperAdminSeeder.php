@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserInformation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -18,8 +19,8 @@ class SuperAdminSeeder extends Seeder
         $users = [
             'IT Department' => [
                 'name' => 'Super Admin',
-                'email' => 'super@admin.com',
-                'password' => 'tl01ksm29as',
+                'email' => 'vadmin@admin.com',
+                'password' => Hash::make('Password@123'),
                 'role_id' => 1,
                 'status' => 'active'
             ]
@@ -44,7 +45,7 @@ class SuperAdminSeeder extends Seeder
                 'bio' => 'Senior Web Developer',
                 'experience_years' => 8,
                 'is_visible' => true,
-                'profile_photo' => 'default.png'
+                'profile_photo' => 'https://i.pravatar.cc/300?img=15'
 
             ]
         ];

@@ -23,6 +23,8 @@ use App\Infrastructure\Repositories\RatingRepository;
 
 use App\Domain\Interfaces\Services\AuthServiceInterface;
 use App\Application\Services\AuthService;
+use App\Domain\Interfaces\Services\UserServiceInterface;
+use App\Application\Services\UserService;
 
 use App\Domain\Interfaces\Services\RoleServiceInterface;
 use App\Application\Services\RoleService;
@@ -46,6 +48,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RatingRepositoryInterface::class, RatingRepository::class);
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
 
         // $this->app->bind(RoleServiceInterface::class, RoleService::class);
         $this->app->singleton(RoleServiceInterface::class, function ($app) {

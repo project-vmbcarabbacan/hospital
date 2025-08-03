@@ -1,6 +1,8 @@
 <?php
 
+use App\Application\Utils\SuccessConstants;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -18,6 +20,6 @@ Route::group([
     ],
     'as' => 'hpt.', // Route name prefix
 ], function () {
-
+    Route::get('/user', [UserController::class, 'currentUser']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
