@@ -4,7 +4,8 @@ namespace App\Domain\ValueObjects;
 
 use InvalidArgumentException;
 
-class IdObj {
+class IdObj
+{
     private int $value;
 
     public function __construct(int $value)

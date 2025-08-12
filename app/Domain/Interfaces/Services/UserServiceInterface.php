@@ -8,4 +8,5 @@ interface UserServiceInterface
 {
     public function currentUser();
     public function getUserProfileByUserId(IdObj $id);
+    public function getRating(IdObj $userId);
 }

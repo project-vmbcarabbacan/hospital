@@ -2,6 +2,7 @@
 
 namespace App\Application\Services;
 
+use App\Domain\Interfaces\Repositories\RatingRepositoryInterface;
 use App\Domain\Interfaces\Repositories\UserRepositoryInterface;
 use App\Domain\Interfaces\Services\UserServiceInterface;
 use App\Domain\ValueObjects\IdObj;
@@ -9,7 +10,10 @@ use App\Domain\ValueObjects\IdObj;
 class UserService implements UserServiceInterface
 {
 
-    public function __construct(protected UserRepositoryInterface $userRepository) {}
+    public function __construct(
+        protected UserRepositoryInterface $userRepository,
+        protected RatingRepositoryInterface $ratingRepositoryInterface
+    ) {}
 
     public function currentUser()
     {
@@ -23,6 +27,11 @@ class UserService implements UserServiceInterface
 
     public function getUserProfileByUserId(IdObj $id)
     {
-        return true;
+        return $this->userRepository->findById($id);
+    }
+
+    public function getRating(IdObj $userId)
+    {
+        return $this->ratingRepositoryInterface->getAverageByDoctorId($userId);
     }
 }

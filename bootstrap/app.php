@@ -6,6 +6,9 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Request;
 
 use App\Http\Middleware\SanitizeRequest;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,6 +16,14 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__ . '/../routes/web.php',
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
+        then: function () {
+            Route::middleware(
+                'web',
+                'auth:sanctum',
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+            )->namespace('Profile')->prefix('profile')->name('profile.')->group(base_path('routes/profile.php'));
+        }
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->statefulApi();
