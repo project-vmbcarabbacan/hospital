@@ -22,11 +22,16 @@ class UserInformation extends BaseModel
         'title',
         'phone',
         'address',
+        'license_number',
+        'license_expiry',
         'birthdate',
+        'hired_date',
         'gender',
         'bio',
-        'experience_years',
         'is_visible',
+        'days_of_working',
+        'work_timing',
+        'occupation_type',
         'profile_photo',
     ];
 

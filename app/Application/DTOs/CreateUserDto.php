@@ -2,6 +2,7 @@
 
 namespace App\Application\DTOs;
 
+use App\Domain\ValueObjects\DateObj;
 use App\Domain\ValueObjects\EmailObj;
 use App\Domain\ValueObjects\PasswordObj;
 
@@ -18,11 +19,16 @@ class CreateUserDto
         public readonly ?int $specialization_id = null,
         public readonly string $phone,
         public readonly ?string $address = null,
-        public readonly ?string $birthdate = null,
+        public readonly ?string $license_number = null,
+        public readonly ?DateObj $license_expiry = null,
+        public readonly ?DateObj $birthdate = null,
+        public readonly ?DateObj $hired_date = null,
         public readonly ?string $gender = null,
         public readonly ?string $bio = null,
-        public readonly ?int $experience_years = null,
         public readonly ?bool $is_visible = true,
+        public readonly ?string $days_of_working = null,
+        public readonly ?string $work_timing = null,
+        public readonly ?string $occupation_type = null,
         public readonly ?string $profile_photo = null,
     ) {}
 
@@ -39,11 +45,16 @@ class CreateUserDto
             phone: $data['phone'],
             specialization_id: $data['specialization_id'] ?? null,
             address: $data['address'],
-            birthdate: $data['birthdate'],
+            birthdate: $data['birthdate'] ? new DateObj($data['birthdate']) : null,
             gender: $data['gender'],
             bio: $data['bio'],
-            experience_years: $data['experience_years'],
+            license_number: $data['license_number'],
+            license_expiry: $data['license_expiry'] ? new DateObj($data['license_expiry']) : null,
+            hired_date: $data['hired_date'] ? new DateObj($data['hired_date']) : null,
             is_visible: $data['is_visible'],
+            days_of_working: $data['days_of_working'],
+            work_timing: $data['work_timing'],
+            occupation_type: $data['occupation_type'],
             profile_photo: $data['profile_photo'],
         );
     }

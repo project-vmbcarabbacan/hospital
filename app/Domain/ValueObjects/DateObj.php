@@ -27,6 +27,26 @@ class DateObj
         return Carbon::createFromFormat('Y-m-d', $this->value);
     }
 
+    public function getDays()
+    {
+        if (!$this->value)
+            return '';
+
+        $fromDate = Carbon::parse($this->value);
+        $toDate = Carbon::now();
+
+        $diff = $fromDate->diff($toDate);
+
+        $years = $diff->y;
+        $months = $diff->m;
+        $days = $diff->d;
+
+        if ($days > 0 && $years === 0)
+            return $months . ($months > 1 ? "months " : "month ") . $days . ($days > 1 ? "days" : "day");
+        else
+            return $years . ($years > 1 ? "years " : "year ") . $months . ($months > 1 ? "months" : "month");
+    }
+
     public function equals(DateObj $other): bool
     {
         return $this->value === $other->value();

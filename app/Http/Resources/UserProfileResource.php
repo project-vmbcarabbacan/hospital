@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Domain\ValueObjects\DateObj;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -39,17 +40,28 @@ class UserProfileResource extends JsonResource
             'email' => $user->email,
             'contact' => $user->information->phone,
             'avatar_url' => $user->information->profile_photo,
-            'status' => $user->status,
+            'status' => ucwords($user->status),
             'role' => $this->roleName,
             'department' => $user->headDepartment ? $user->headDepartment->name : '-',
             'rating' => (float) $this->rating
         ];
     }
 
-    private function setBasic($request)
+    private function setBasic($user)
     {
+        $hired_date = new DateObj($user->information->hired_date);
         return [
-            'last' => 'carabbacan'
+            'employee_id' => $user->id,
+            'hired_date' => $hired_date->value(),
+            'work_for' => $hired_date->getDays(),
+            'license_number' => $user->information->license_number,
+            'license_expiry' => $user->information->license_expiry,
+            'birth_date' => $user->information->birthdate,
+            'address' => $user->information->address,
+            'days_of_working' => $user->information->days_of_working,
+            'work_timing' => $user->information->work_timing,
+            'occupation_type' => $user->information->occupation_type
+
         ];
     }
 }

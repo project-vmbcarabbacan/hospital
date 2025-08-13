@@ -51,8 +51,13 @@ class AuthRepository implements AuthRepositoryInterface
                 birthdate: $dto->birthdate,
                 gender: $dto->gender,
                 bio: $dto->bio,
-                experience_years: $dto->experience_years,
+                license_number: $dto->license_number,
+                license_expiry: $dto->license_expiry,
+                hired_date: $dto->hired_date,
                 is_visible: $dto->is_visible,
+                days_of_working: $dto->days_of_working,
+                work_timing: $dto->work_timing,
+                occupation_type: $dto->occupation_type,
                 profile_photo: $dto->profile_photo,
             );
             $this->createUserInformation($user, $information);
@@ -121,11 +126,16 @@ class AuthRepository implements AuthRepositoryInterface
                 'title'         => $data->title ?? null,
                 'phone'         => $data->phone ?? null,
                 'address'       => $data->address ?? null,
-                'birthdate'     => $data->birthdate ?? null,
+                'birthdate'     => $data->birthdate ? $data->birthdate->value() : null,
                 'gender'        => $data->gender ?? null,
                 'bio'        => $data->bio ?? null,
-                'experience_years'        => $data->experience_years ?? null,
+                'license_number'        => $data->license_number ?? null,
+                'license_expiry'        => $data->license_expiry ? $data->license_expiry->value() : null,
+                'hired_date'        => $data->hired_date ? $data->hired_date->value() : null,
                 'is_visible'        => $data->is_visible ?? true,
+                'days_of_working' => $data->days_of_working ?? null,
+                'work_timing' => $data->work_timing ?? null,
+                'occupation_type' => $data->occupation_type ?? null,
                 'profile_photo' => $data->profile_photo ?? null,
             ]);
         } catch (Exception $e) {
