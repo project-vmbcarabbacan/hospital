@@ -2,6 +2,7 @@
 
 namespace App\Domain\Interfaces\Repositories;
 
+use App\Domain\Entities\UpdateByFieldEntity;
 use App\Domain\ValueObjects\EmailObj;
 use App\Domain\ValueObjects\IdObj;
 use App\Domain\ValueObjects\RoleIdObj;
@@ -12,4 +13,5 @@ interface UserRepositoryInterface
     public function findByEmail(EmailObj $email);
     public function findByPhone(string $phone);
     public function findByRole(RoleIdObj $role_id);
+    public function updateProfileById(UpdateByFieldEntity $entity);
 }

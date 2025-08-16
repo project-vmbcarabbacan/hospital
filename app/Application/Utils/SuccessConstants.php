@@ -10,4 +10,6 @@ class SuccessConstants
 
     const CURRENT_USER = 'Authenticated user';
     const USER_PROFILE = 'Get profile user by ID';
+
+    const APPOINTMENT = 'Appointment by doctor';
 }

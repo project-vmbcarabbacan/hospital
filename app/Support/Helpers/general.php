@@ -10,7 +10,7 @@ if (!function_exists('add_log')) {
         $string = $log->value;
 
         foreach ($data as $key => $value)
-            $string = str_replace( "@" . strtoupper($key) . "@", $data[$key], $string);
+            $string = str_replace("@" . strtoupper($key) . "@", $data[$key], $string);
 
         return $string;
     }
@@ -61,5 +61,12 @@ if (!function_exists('toLabelValue')) {
                 'value' => $item->{$valueKey},
             ];
         })->toArray();
+    }
+}
+
+if (!function_exists('camelToSnake')) {
+    function camelToSnake($input)
+    {
+        return strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $input));
     }
 }

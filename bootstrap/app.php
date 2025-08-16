@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckTokenAbility;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -23,11 +24,21 @@ return Application::configure(basePath: dirname(__DIR__))
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
             )->namespace('Profile')->prefix('profile')->name('profile.')->group(base_path('routes/profile.php'));
+            Route::middleware(
+                'web',
+                'auth:sanctum',
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+            )->namespace('Schedule')->prefix('schedule')->name('schedule.')->group(base_path('routes/schedule.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->statefulApi();
         $middleware->append(SanitizeRequest::class);
+
+        $middleware->alias([
+            'ability' => CheckTokenAbility::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         // ✅ Log all exceptions to a custom channel

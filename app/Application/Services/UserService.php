@@ -2,6 +2,8 @@
 
 namespace App\Application\Services;
 
+use App\Application\DTOs\UpdateByFieldDto;
+use App\Domain\Entities\UpdateByFieldEntity;
 use App\Domain\Interfaces\Repositories\RatingRepositoryInterface;
 use App\Domain\Interfaces\Repositories\UserRepositoryInterface;
 use App\Domain\Interfaces\Services\UserServiceInterface;
@@ -33,5 +35,16 @@ class UserService implements UserServiceInterface
     public function getRating(IdObj $userId)
     {
         return $this->ratingRepositoryInterface->getAverageByDoctorId($userId);
+    }
+
+    public function updateUserProfileByField(UpdateByFieldDto $dto)
+    {
+        $entity = new UpdateByFieldEntity(
+            id: $dto->id,
+            field: $dto->field,
+            value: $dto->value,
+        );
+
+        $this->userRepository->updateProfileById($entity);
     }
 }

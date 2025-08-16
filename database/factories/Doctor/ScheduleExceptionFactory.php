@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Doctor;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class ScheduleExceptionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => function () {
+                return User::where('role_id', 3)->inRandomOrder()->value('id');
+            },
             'date' => $this->faker->date('Y-m-d'),
             'is_available' => $this->faker->boolean(),
             'notes' => $this->faker->paragraph,

@@ -12,9 +12,25 @@ class Appointment extends BaseModel
     protected $fillable = [
         'doctor_id',
         'patient_id',
+        'service_id',
         'date',
         'appointment_time',
         'status',
         'notes',
     ];
+
+    public function doctor()
+    {
+        return $this->belongsTo(User::class, 'doctor_id', 'id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(User::class, 'patient_id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id', 'id');
+    }
 }

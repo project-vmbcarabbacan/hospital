@@ -77,6 +77,13 @@ class AppointmentRepository implements AppointmentRepositoryInterface
         return Appointment::find($id->value());
     }
 
+    public function getAppointByDoctorIdAndDate(IdObj $doctor_id, DateObj $date)
+    {
+        return Appointment::where('doctor_id', $doctor_id->value())
+            ->whereDate('date', $date->value())
+            ->get();
+    }
+
     public function getAllAppointments(AppointmentFilterEntity $data) {}
 
     protected function checkIfPatientMadeAppointmentOfSameDay(IdObj $patient_id, DateObj $date)

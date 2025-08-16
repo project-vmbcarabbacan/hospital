@@ -30,6 +30,8 @@ use App\Domain\Interfaces\Services\RoleServiceInterface;
 use App\Application\Services\RoleService;
 use App\Infrastructure\Readers\RoleFileReader;
 use App\Application\Mappers\RoleDataMapper;
+use App\Application\Services\AppointmentService;
+use App\Domain\Interfaces\Services\AppointmentServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -49,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(AuthServiceInterface::class, AuthService::class);
         $this->app->bind(UserServiceInterface::class, UserService::class);
+        $this->app->bind(AppointmentServiceInterface::class, AppointmentService::class);
 
         // $this->app->bind(RoleServiceInterface::class, RoleService::class);
         $this->app->singleton(RoleServiceInterface::class, function ($app) {

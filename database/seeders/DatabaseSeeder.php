@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             SpecializationSeeder::class,
             SuperAdminSeeder::class,
+            UserSeeder::class,
             // RunFactorySeeder::class,
         ]);
     }

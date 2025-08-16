@@ -10,9 +10,15 @@ class Service extends BaseModel
     use HasFactory;
     protected $fillable = [
         'name',
+        'appointment_type_id',
         'sku',
         'price',
         'photo',
         'status'
     ];
+
+    public function appointmentType()
+    {
+        return $this->belongsTo(AppointmentType::class, 'appointment_type_id', 'id');
+    }
 }
