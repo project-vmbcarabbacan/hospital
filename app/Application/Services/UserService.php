@@ -2,10 +2,13 @@
 
 namespace App\Application\Services;
 
+use App\Application\DTOs\AchievementAddDto;
 use App\Application\DTOs\UpdateByFieldDto;
+use App\Domain\Entities\AchievementEntity;
 use App\Domain\Entities\UpdateByFieldEntity;
 use App\Domain\Interfaces\Repositories\RatingRepositoryInterface;
 use App\Domain\Interfaces\Repositories\UserRepositoryInterface;
+use App\Domain\Interfaces\Repositories\UserSpecializationAchievementRepositoryInterface;
 use App\Domain\Interfaces\Services\UserServiceInterface;
 use App\Domain\ValueObjects\IdObj;
 
@@ -14,7 +17,8 @@ class UserService implements UserServiceInterface
 
     public function __construct(
         protected UserRepositoryInterface $userRepository,
-        protected RatingRepositoryInterface $ratingRepositoryInterface
+        protected RatingRepositoryInterface $ratingRepositoryInterface,
+        protected UserSpecializationAchievementRepositoryInterface $userSpecializationAchievementRepositoryInterface
     ) {}
 
     public function currentUser()
@@ -46,5 +50,17 @@ class UserService implements UserServiceInterface
         );
 
         $this->userRepository->updateProfileById($entity);
+    }
+
+    public function achievementAdd(AchievementAddDto $dto)
+    {
+        $entity = new AchievementEntity(
+            user_id: $dto->user_id,
+            title: $dto->title,
+            description: $dto->description,
+            year_awarded: $dto->year_awarded,
+        );
+
+        return $this->userSpecializationAchievementRepositoryInterface->addAchievement($entity);
     }
 }

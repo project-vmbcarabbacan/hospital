@@ -14,4 +14,5 @@ class SuccessConstants
     const APPOINTMENT = 'Appointment by doctor';
 
     const AVATAR_UPLOAD = 'Avatar successfully uploaded';
+    const ACHIEVEMENT_ADD = 'Achievement successfully added';
 }

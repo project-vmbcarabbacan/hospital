@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasOne(Department::class, 'head_doctor_id', 'id');
     }
 
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class, 'user_id', 'id');
+    }
+
     public function logs()
     {
         return $this->hasMany(UserLog::class, 'user_id', 'id');

@@ -29,6 +29,7 @@ class UserProfileResource extends JsonResource
         return [
             'profile_information' => $this->setProfile($this),
             'basic_information' => $this->setBasic($this),
+            'achievements' => $this->setAchievements($this),
             'bio' => $this->information->bio
         ];
     }
@@ -73,5 +74,17 @@ class UserProfileResource extends JsonResource
             'occupation_type' => $user->information->occupation_type
 
         ];
+    }
+
+    private function setAchievements($user): array
+    {
+        return $user->achievements->map(function ($achievement) {
+            return [
+                'achievement_id' => $achievement->id,
+                'title' => $achievement->title,
+                'description' => $achievement->description,
+                'year_awarded' => $achievement->year_awarded,
+            ];
+        })->toArray();
     }
 }
