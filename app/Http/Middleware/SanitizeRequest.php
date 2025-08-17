@@ -15,6 +15,14 @@ class SanitizeRequest
      */
     public function handle(Request $request, Closure $next)
     {
+        $excludedPaths = [
+            'profile/update',
+        ];
+
+        if ($request->is($excludedPaths)) {
+            return $next($request);
+        }
+
         $sanitized = $this->sanitize($request->all());
 
         // Replace request data

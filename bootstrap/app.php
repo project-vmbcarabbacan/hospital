@@ -30,6 +30,12 @@ return Application::configure(basePath: dirname(__DIR__))
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
             )->namespace('Schedule')->prefix('schedule')->name('schedule.')->group(base_path('routes/schedule.php'));
+            Route::middleware(
+                'web',
+                'auth:sanctum',
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+            )->namespace('Image')->prefix('image')->name('image.')->group(base_path('routes/image.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {

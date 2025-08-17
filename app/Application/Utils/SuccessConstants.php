@@ -12,4 +12,6 @@ class SuccessConstants
     const USER_PROFILE = 'Get profile user by ID';
 
     const APPOINTMENT = 'Appointment by doctor';
+
+    const AVATAR_UPLOAD = 'Avatar successfully uploaded';
 }

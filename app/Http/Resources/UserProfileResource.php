@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Domain\ValueObjects\DateObj;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserProfileResource extends JsonResource
@@ -28,18 +28,28 @@ class UserProfileResource extends JsonResource
 
         return [
             'profile_information' => $this->setProfile($this),
-            'basic_information' => $this->setBasic($this)
+            'basic_information' => $this->setBasic($this),
+            'bio' => $this->information->bio
         ];
     }
 
     private function setProfile($user)
     {
+        $baseUrl = config('app.url');
+
+        $avatarUrl = $user->information->profile_photo;
+
+        if (empty($baseUrl) || !filter_var($avatarUrl, FILTER_VALIDATE_URL)) {
+            $avatarUrl = Storage::disk('public')->url($avatarUrl);
+        }
+
+
         return [
             'user_id' => $user->id,
             'name' => $user->information->first_name . ' ' . $user->information->last_name,
             'email' => $user->email,
             'contact' => $user->information->phone,
-            'avatar_url' => $user->information->profile_photo,
+            'avatar_url' => $avatarUrl,
             'status' => ucwords($user->status),
             'role' => $this->roleName,
             'department' => $user->headDepartment ? $user->headDepartment->name : '-',

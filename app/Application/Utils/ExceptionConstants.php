@@ -62,4 +62,5 @@ class ExceptionConstants
     const PRESCRIPTION_ITEM_FOUND = 'Prescription item already exist';
 
     const RATING_NOT_FOUND = 'Rating not found';
+    const IMAGE_AVATAR_FAILED = 'Failed to store image';
 }
